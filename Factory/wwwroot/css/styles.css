@@ -1,0 +1,30 @@
+body {
+  background-color: #c8d8e4;
+}
+
+.jumbotron {
+  background-color: #2b6777;
+  color: aliceblue;
+}
+
+.column {
+  flex: 50%;
+  background-color: rgb(199, 199, 199);
+  height: 100%;
+  border: solid 1px black;
+}
+
+.container {
+  background-color: aliceblue;
+}
+
+.row {
+  margin: 1px;
+  height: 100%;
+  text-align: center;
+}
+
+h2 {
+  margin: 10px;
+}
+
