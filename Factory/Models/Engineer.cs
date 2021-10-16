@@ -13,11 +13,5 @@ namespace Factory.Models
     public string Name { get; set; }
     public int Age { get; set; }
     public virtual ICollection<EngineerMachine> JoinEntities { get; set; }
-
-    // private List<Engineer> GetEngineers()
-    // {
-    //   List<Engineer> engineers = new List<Engineer>();
-    //   return engineers;
-    // }
   }
 }
