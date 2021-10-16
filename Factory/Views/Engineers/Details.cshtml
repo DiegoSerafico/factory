@@ -1,0 +1,29 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Engineer;
+
+<div class="jumbotron">
+  <h1>Engineer details</h1>
+</div>
+<h2>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h2>
+<h2>@Html.DisplayNameFor(model => model.Age): @Html.DisplayFor(model => model.Age)</h2>
+
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>This Engineer is not licensed for any machine</p>
+}
+else
+{
+  <h4>Machines the Engineer is licensed to work on:</h4>
+  <ul>
+  @foreach(var join in Model.JoinEntities)
+  {
+    <li>@join.Machine.Model</li>
+  }
+  </ul>
+}
+
+
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
