@@ -1,0 +1,22 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Engineer
+
+<div class="jumbotron">
+  <h1>Add an engineer</h1>
+</div>
+
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.Name)
+  @Html.TextBoxFor(model => model.Name)
+
+  @Html.LabelFor(model => model.Age)
+  @Html.TextBoxFor(model => model.Age, new { type="number", min="1", max="100", step="1"})
+
+  <input type="submit" value="Add new engineer"/>
+}
+
+<p>@Html.ActionLink("Home", "Index", "Home")</p>

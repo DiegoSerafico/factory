@@ -1,9 +1,9 @@
-
 @{
   Layout = "_Layout";
 }
 
 @using Factory.Models;
+@model dynamic;
 
 <div class="jumbotron">
   <h1>Dr. Sillystringz's Factory</h1>
@@ -11,8 +11,18 @@
 <div class="row h-100">
   <div class="column min-vh-100">
     <h2 class="jumbotron">Engineers</h2>
+    @foreach (Engineer engineer in Model.Engineers)
+    {
+      <li>@engineer.Name</li>
+    }
+    <p>@Html.ActionLink("Add new engineer", "Create", "Engineers")</p>
   </div>
   <div class="column min-vh-100">
     <h2 class="jumbotron">Machines</h2>
+    @foreach (Machine machine in Model.Machines)
+    {
+      <li>@machine.Model</li>
+    }
+    <p>@Html.ActionLink("Add new machine", "Create", "Machines")</p>
   </div>
 </div>
