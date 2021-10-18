@@ -2,6 +2,7 @@
   Layout = "_Layout";
 }
 
+@using Factory.Models
 @model Factory.Models.Engineer;
 
 <div class="jumbotron">
@@ -22,7 +23,12 @@ else
   <ul>
   @foreach(var join in Model.JoinEntities)
   {
-    <li>@join.Machine.Model</li>
+    <li>@Html.ActionLink(@join.Machine.Model, "Details", "Machines", new { id = join.Machine.MachineId })</li>
+    @using (Html.BeginForm("DeleteMachine", "Engineers"))
+    {
+      @Html.Hidden("JoinId", @join.EngineerMachineId)
+      <input type="submit" value="Delete"/>
+    }
   }
   </ul>
 }
@@ -32,7 +38,7 @@ else
 }
 else
 {
-  @using (Html.BeginForm("AddEngineer", "Engineers"))
+  @using (Html.BeginForm("AddMachine", "Engineers"))
   {
     @Html.HiddenFor(model => model.EngineerId)
     @Html.Label("Add Machine")

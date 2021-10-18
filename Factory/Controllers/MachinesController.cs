@@ -74,7 +74,7 @@ namespace Factory.Controllers
       return RedirectToAction("Index", "Home");
     }
 
-    public ActionResult AddMachine(Machine machine, int EngineerId)
+    public ActionResult AddEngineer(Machine machine, int EngineerId)
     {
       if (EngineerId != 0)
       {
@@ -82,6 +82,15 @@ namespace Factory.Controllers
       }
       _db.SaveChanges();
       return RedirectToAction("Details", new { id = machine.MachineId });
+    }
+
+    [HttpPost]
+    public ActionResult DeleteEngineer(int joinId)
+    {
+      var joinEntry = _db.EngineerMachine.FirstOrDefault(entry => entry.EngineerMachineId == joinId);
+      _db.EngineerMachine.Remove(joinEntry);
+      _db.SaveChanges();
+      return RedirectToAction("Index", "Home");
     }
   }
 }

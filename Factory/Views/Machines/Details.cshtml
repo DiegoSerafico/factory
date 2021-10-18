@@ -19,7 +19,12 @@ else
   <ul>
   @foreach(var join in Model.JoinEntities)
   {
-    <li>@join.Engineer.Name</li>
+    <li>@Html.ActionLink(@join.Engineer.Name, "Details", "Engineers", new { id = join.Engineer.EngineerId })</li>
+    @using (Html.BeginForm("DeleteEngineer", "Machines"))
+    {
+      @Html.Hidden("JoinId", @join.EngineerMachineId)
+      <input type="submit" value="Delete"/>
+    }
   }
   </ul>
 }
@@ -29,7 +34,7 @@ else
 }
 else
 {
-  @using (Html.BeginForm("AddMachine", "Machines"))
+  @using (Html.BeginForm("AddEngineer", "Machines"))
   {
     @Html.HiddenFor(model => model.MachineId)
     @Html.Label("Add Engineer")
