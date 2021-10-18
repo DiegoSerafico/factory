@@ -31,11 +31,27 @@ namespace Factory.Controllers
 
     public ActionResult Details(int id)
     {
+      ViewBag.NoMachines = _db.Machines.ToList().Count == 0;
+      ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Model");
       var thisEngineer = _db.Engineers
         .Include(engineer => engineer.JoinEntities)
         .ThenInclude(join => join.Machine)
         .FirstOrDefault(engineer => engineer.EngineerId == id);
       return View(thisEngineer);
+    }
+
+    public ActionResult Edit(int id)
+    {
+      var thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
+      return View(thisEngineer);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(Engineer engineer)
+    {
+      _db.Entry(engineer).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Details");
     }
   }
 }
