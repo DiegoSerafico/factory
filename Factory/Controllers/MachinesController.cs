@@ -31,6 +31,8 @@ namespace Factory.Controllers
 
     public ActionResult Details(int id)
     {
+      ViewBag.NoEngineers = _db.Engineers.ToList().Count == 0;
+      ViewBag.EngineerId = new SelectList(_db.Engineers, "EngineerId", "Name");
       var thisMachine = _db.Machines
         .Include(machine => machine.JoinEntities)
         .ThenInclude(join => join.Engineer)
@@ -70,6 +72,16 @@ namespace Factory.Controllers
       _db.Machines.Remove(thisMachine);
       _db.SaveChanges();
       return RedirectToAction("Index", "Home");
+    }
+
+    public ActionResult AddMachine(Machine machine, int EngineerId)
+    {
+      if (EngineerId != 0)
+      {
+      _db.EngineerMachine.Add(new EngineerMachine() { EngineerId = EngineerId, MachineId = machine.MachineId});
+      }
+      _db.SaveChanges();
+      return RedirectToAction("Details", new { id = machine.MachineId });
     }
   }
 }

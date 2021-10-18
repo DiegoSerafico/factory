@@ -23,6 +23,20 @@ else
   }
   </ul>
 }
+@if(ViewBag.NoEngineers)
+{
+  <p>There are no Engineers currently licensed for this machine.</p>
+}
+else
+{
+  @using (Html.BeginForm("AddMachine", "Machines"))
+  {
+    @Html.HiddenFor(model => model.MachineId)
+    @Html.Label("Add Engineer")
+    @Html.DropDownList("EngineerId")
+    <input type="submit" value="save"/>
+  }
+}
 
 
 <p>@Html.ActionLink("Home", "Index", "Home")</p>

@@ -69,5 +69,15 @@ namespace Factory.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index", "Home");
     }
+
+    public ActionResult AddEngineer(Engineer engineer, int MachineId)
+    {
+      if (MachineId != 0)
+      {
+      _db.EngineerMachine.Add(new EngineerMachine() { MachineId = MachineId, EngineerId = engineer.EngineerId});
+      }
+      _db.SaveChanges();
+      return RedirectToAction("Details", new { id = engineer.EngineerId });
+    }
   }
 }

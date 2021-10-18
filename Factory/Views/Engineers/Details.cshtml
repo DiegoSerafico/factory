@@ -7,7 +7,9 @@
 <div class="jumbotron">
   <h1>Engineer details</h1>
 </div>
+
 <h2>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h2>
+
 <h2>@Html.DisplayNameFor(model => model.Age): @Html.DisplayFor(model => model.Age)</h2>
 
 @if(@Model.JoinEntities.Count == 0)
@@ -23,6 +25,20 @@ else
     <li>@join.Machine.Model</li>
   }
   </ul>
+}
+@if(ViewBag.NoMachines)
+{
+  <p>There are no machines this Enginner is currently licensed for.</p>
+}
+else
+{
+  @using (Html.BeginForm("AddEngineer", "Engineers"))
+  {
+    @Html.HiddenFor(model => model.EngineerId)
+    @Html.Label("Add Machine")
+    @Html.DropDownList("MachineId")
+    <input type="submit" value="save"/>
+  }
 }
 
 
