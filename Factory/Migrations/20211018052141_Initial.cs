@@ -9,7 +9,7 @@ namespace Factory.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Engineer",
+                name: "Engineers",
                 columns: table => new
                 {
                     EngineerId = table.Column<int>(type: "int", nullable: false)
@@ -19,11 +19,11 @@ namespace Factory.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Engineer", x => x.EngineerId);
+                    table.PrimaryKey("PK_Engineers", x => x.EngineerId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Machine",
+                name: "Machines",
                 columns: table => new
                 {
                     MachineId = table.Column<int>(type: "int", nullable: false)
@@ -33,7 +33,7 @@ namespace Factory.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Machine", x => x.MachineId);
+                    table.PrimaryKey("PK_Machines", x => x.MachineId);
                 });
 
             migrationBuilder.CreateTable(
@@ -49,15 +49,15 @@ namespace Factory.Migrations
                 {
                     table.PrimaryKey("PK_EngineerMachine", x => x.EngineerMachineId);
                     table.ForeignKey(
-                        name: "FK_EngineerMachine_Engineer_EngineerId",
+                        name: "FK_EngineerMachine_Engineers_EngineerId",
                         column: x => x.EngineerId,
-                        principalTable: "Engineer",
+                        principalTable: "Engineers",
                         principalColumn: "EngineerId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_EngineerMachine_Machine_MachineId",
+                        name: "FK_EngineerMachine_Machines_MachineId",
                         column: x => x.MachineId,
-                        principalTable: "Machine",
+                        principalTable: "Machines",
                         principalColumn: "MachineId",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -79,10 +79,10 @@ namespace Factory.Migrations
                 name: "EngineerMachine");
 
             migrationBuilder.DropTable(
-                name: "Engineer");
+                name: "Engineers");
 
             migrationBuilder.DropTable(
-                name: "Machine");
+                name: "Machines");
         }
     }
 }

@@ -31,7 +31,7 @@ namespace Factory.Migrations
 
                     b.HasKey("EngineerId");
 
-                    b.ToTable("Engineer");
+                    b.ToTable("Engineers");
                 });
 
             modelBuilder.Entity("Factory.Models.EngineerMachine", b =>
@@ -69,7 +69,7 @@ namespace Factory.Migrations
 
                     b.HasKey("MachineId");
 
-                    b.ToTable("Machine");
+                    b.ToTable("Machines");
                 });
 
             modelBuilder.Entity("Factory.Models.EngineerMachine", b =>

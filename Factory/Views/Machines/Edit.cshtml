@@ -12,6 +12,8 @@
 
 @using (Html.BeginForm())
 {
+  @Html.HiddenFor(model => model.MachineId)
+
   @Html.LabelFor(model => model.Model)
   @Html.TextBoxFor(model => model.Model)
 

@@ -54,7 +54,7 @@ namespace Factory.Controllers
       }
       _db.Entry(machine).State = EntityState.Modified;
       _db.SaveChanges();
-      return RedirectToAction("Details");
+      return RedirectToAction("Details", new { id = machine.MachineId });
     }
   }
 }

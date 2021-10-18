@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Factory.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace Factory.Controllers
 {
@@ -51,7 +52,7 @@ namespace Factory.Controllers
     {
       _db.Entry(engineer).State = EntityState.Modified;
       _db.SaveChanges();
-      return RedirectToAction("Details");
+      return RedirectToAction("Details", new { id = engineer.EngineerId });
     }
   }
 }
