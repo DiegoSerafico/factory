@@ -22,5 +22,5 @@
 
   <input type="submit" value="Edit engineer"/>
 }
-<p>@Html.ActionLink("Cancel", "Details")</p>
+<p>@Html.ActionLink("Cancel", "Details", new { id = Model.EngineerId })</p>
 <p>@Html.ActionLink("Home", "Index", "Home")</p>
